@@ -3,5 +3,5 @@ UBUNTU - T2.SMALL
 Java -version
 openjdk version "17.0.8.1" 2023-08-24
 ./mvnw clean install
-nginx conf file is added ..for the frontend in that change publicip for newinstance in host address
+nginx conf file is added for the frontend ..in that change publicip for every newinstance .i.e proxy_pass http://34.205.19.219:8080;
 Install Docker and Docker-compose
