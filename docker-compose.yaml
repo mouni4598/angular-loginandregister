@@ -1,0 +1,43 @@
+version: '3.6'
+
+services:
+  mysql:
+    image: mysql:8.0.26
+    environment: 
+      MYSQL_DATABASE: employee
+      MYSQL_ROOT_USERNAME: root
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - /home/braians/desenvolvimento/Docker/Volumes/Mysql/lib/mysql
+    networks:
+      - app-network
+  backend:
+    image: braians/spring-blog-backend
+    build:
+      context: ./backend/loginandregister
+      dockerfile: Dockerfile
+    environment: 
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/employee
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    ports:
+      - 8080:8080
+    networks:
+      - app-network
+    depends_on:
+      - mysql
+  frontend:
+    image: braians/spring-blog-client
+    build: ./frontend
+    ports:
+      - 4200:80
+    depends_on: 
+      - backend
+    networks: 
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
