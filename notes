@@ -1,5 +1,5 @@
 UBUNTU - T2.SMALL
-
+sudo apt install openjdk-17-jdk
 Java -version
 openjdk version "17.0.8.1" 2023-08-24
 ./mvnw clean install
